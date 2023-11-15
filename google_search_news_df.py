@@ -1,9 +1,13 @@
 from GoogleNews import GoogleNews
 import pandas as pd
 
-def google_news_df(per='1d',langu='es',reg='US',topic='python'):
+def google_search_news_df(per='1d',langu='es',reg='US',topic='python',mod='news'):
   gn = GoogleNews(lang=langu,region=reg,period=per,encode='utf-8')
-  gn.search(topic)
+  if mod=='news':
+    gn.get_news(topic)
+  elif mod=='search':
+    gn.search(topic)
+
   news_items = gn.result()
   print(len(news_items))
 
